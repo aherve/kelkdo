@@ -11,11 +11,11 @@ class User
   #       :recoverable, :rememberable, :trackable, :validatable
 
   devise :omniauthable, :omniauth_providers => [:facebook]
-  devise :trackable
+  devise :trackable, :database_authenticatable
 
   ## Database authenticatable
-  #field :email,              type: String, default: ""
-  #field :encrypted_password, type: String, default: ""
+  field :email,              type: String, default: ""
+  field :encrypted_password, type: String, default: ""
 
   ## Recoverable
   #field :reset_password_token,   type: String

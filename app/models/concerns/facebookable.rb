@@ -17,17 +17,10 @@ module Facebookable
         Faraday.new(:url => 'https://graph.facebook.com/user') do |faraday|
           faraday.request  :url_encoded             # form-encode POST params
           faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
-          faraday.params["access_token"] = [FACEBOOK_APP_TOKEN,FACEBOOK_APP_SECRET].join("|")
+          faraday.params["access_token"] = [ENV['FACEBOOK_APP_TOKEN'],ENV['FACEBOOK_APP_SECRET']].join("|")
         end
       end
     end
-  end
-
-  def fb_friends_hash
-    f = Rails.cache.fetch("usrFbFriends|#{id}", expires_in: 5.minutes) do 
-      provider == "facebook" ? JSON.parse(FbConnector.conn.get("/#{uid}/friends").body)["data"] : []
-    end
-    f || []
   end
 
   def fb_friend_uids
@@ -35,8 +28,8 @@ module Facebookable
     f || []
   end
 
-  def fb_app_friends
-    f = (provider == "facebook" ? User.find(uid: fb_friend_uids) : [] )
+  def friends
+    f = (provider == "facebook" ? User.any_in(uid: fb_friend_uids) : [] )
     f || []
   end
 
@@ -51,6 +44,7 @@ module Facebookable
           user.provider = auth.provider
           user.uid = auth.uid
           user.email = auth.info.email
+          user.password = Devise.friendly_token[0,20]
           user.first_name = auth.info.first_name   # assuming the user model has a name
           user.last_name  = auth.info.last_name   # assuming the user model has a name
           user.gender = auth.info.gender
@@ -67,4 +61,19 @@ module Facebookable
       end
     end
   end
+
+  private
+
+  def fb_friends_hash
+    time = if Rails.env.production?
+             5.minutes
+           else
+             5.seconds
+           end
+    f = Rails.cache.fetch("UsrFbFriends|#{id}", expires_in: time) do 
+      provider == "facebook" ? JSON.parse(FbConnector.conn.get("/#{uid}/friends").body)["data"] : []
+    end
+    f || []
+  end
+
 end
