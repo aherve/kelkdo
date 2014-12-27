@@ -1,0 +1,48 @@
+<%= form_for @gift, controller: :gifts, action: :create, :html => { :class => "form-horizontal gift" } do |f| %>
+
+    <% if @gift.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@gift.errors.count, "error") %> prohibited this gift from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @gift.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label "Pour", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :context, Gift.acceptable_contextes,:class => 'form-control' %>
+    </div>
+    <%= error_span(@gift[:name]) %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "J'ai offert", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@gift[:name]) %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "à", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :recipient, Gift.acceptable_recipients,:class => 'form-control' %>
+    </div>
+    <%= error_span(@gift[:name]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            gifts_path, :class => 'btn btn-default' %>
+
+<% end %>
+

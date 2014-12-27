@@ -8,9 +8,11 @@ class Gift
 
   belongs_to :author, class_name: "User", inverse_of: :gifts
 
+  validates_presence_of :name
+
   class << self
 
-    def acceptable_contextes
+    def acceptable_recipients
       [
         "mon frere" ,
         "ma soeur"  ,
@@ -23,7 +25,7 @@ class Gift
       ]
     end
 
-    def acceptable_recipients
+    def acceptable_contextes
       [
         "noël"            ,
         "son anniversaire",
