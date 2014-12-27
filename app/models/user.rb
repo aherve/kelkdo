@@ -4,6 +4,8 @@ class User
 
   include Facebookable
 
+  has_many :gifts, class_name: "Gift", inverse_of: :author
+
   #{{{ devise
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
