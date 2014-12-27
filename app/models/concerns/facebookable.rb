@@ -23,14 +23,23 @@ module Facebookable
     end
   end
 
-  def fb_friend_uids
+  def friend_uids
     f = (provider == "facebook" ? fb_friends_hash.map{|h| h["id"]} : [])
     f || []
   end
 
-  def friends
-    f = (provider == "facebook" ? User.any_in(uid: fb_friend_uids) : [] )
+  def friend_ids
+    f = (provider == "facebook" ? User.any_in(uid: friend_uids).only(:id).map(&:id) : [] )
     f || []
+  end
+
+  def friends
+    f = (provider == "facebook" ? User.any_in(uid: friend_uids) : [] )
+    f || []
+  end
+
+  def friends_count
+    friend_uids.size
   end
 
   def image

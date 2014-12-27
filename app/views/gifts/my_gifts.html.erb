@@ -1,0 +1,12 @@
+<h2> Mes cadeaux déjà offerts: </h2>
+<div class='well'>
+<ul>
+  <% if @gifts.empty? %>
+  <% else %>
+    <ul>
+    <% @gifts.each do |gift| %>
+      <li><%= gift.name %> à <%= gift.recipient %> pour <%= gift.context %></li>
+  <% end %>
+  </ul>
+<% end %>
+</div>

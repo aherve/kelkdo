@@ -1,0 +1,28 @@
+<div class='well col-lg-12'>
+  <div class='results col-lg-9'>
+    <% if @gifts.empty? %>
+      <div class='row'>0 suggestion ? <strong>NOOOoooooooo!!!!</strong></div>
+      <div class='row'>Bon après avec seulement <%= current_user.friends_count %> amis inscrits ici forcément...</div>
+      <div class='row'> Invite-en d'autres pour avoir plus d'idées !</div>
+  <% else %>
+      <h3><%= @gifts.size %> suggestions de cadeaux: </h3>
+    <ul>
+      <% @gifts.each do |gift, authors| %>
+        <li><%= gift %> (offert(e) par <%= authors.join(", ") %> )</li>
+    <% end %>
+    </ul>
+  <% end %>
+  </div>
+
+  <div class='search col-lg-3 pull-right'>
+    <%= form_for :search, method: :get do |f|%> 
+      <%= f.label :'filtrer par occasion' %>
+    <%= f.select :context, ([nil] + Gift.acceptable_contextes), selected: @context %>
+
+    <%= f.label :'filtrer par destinataire' %>
+    <%= f.select :recipient, ([nil] + Gift.acceptable_recipients), selected: @recipient %>
+
+    <%= f.submit :filtrer%>
+  <% end %>
+  </div>
+</div>
