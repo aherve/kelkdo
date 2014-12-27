@@ -33,3 +33,4 @@ gem 'mongoid', :github => 'mongoid/mongoid'
 gem 'mongo_session_store-rails4'
 
 gem 'figaro'
+gem 'faraday'
