@@ -16,15 +16,15 @@
   <% end %>
 
   <div class="control-group">
-    <%= f.label "Pour", :class => 'control-label' %>
+    <%= f.label "Moi pour", :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :context, Gift.acceptable_contextes,:class => 'form-control' %>
+      <%= f.select :context, Gift.acceptable_contextes,:class => 'form-control' %>,
     </div>
     <%= error_span(@gift[:name]) %>
   </div>
 
   <div class="control-group">
-    <%= f.label "J'ai offert", :class => 'control-label' %>
+    <%= f.label "j'ai offert", :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :name, :class => 'form-control' %>
     </div>
@@ -40,9 +40,7 @@
   </div>
 
 
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            gifts_path, :class => 'btn btn-default' %>
+  <%= f.submit "Eh ouais.", :class => 'btn btn-primary' %>
 
 <% end %>
 

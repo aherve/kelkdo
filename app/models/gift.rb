@@ -14,14 +14,16 @@ class Gift
 
     def acceptable_recipients
       [
+        "môman"     ,
         "mon frere" ,
         "ma soeur"  ,
-        "môman"     ,
         "papa"      ,
         "mon neveu" ,
         "ma niece"  ,
         "ma copine" ,
         "mon copain",
+        "ma femme",
+        "mon mari",
       ]
     end
 
@@ -33,7 +35,7 @@ class Gift
         "rien"            ,
         "m'excuser"       ,
         "pécho"           ,
-        "faire plaisir"   ,
+        "lui faire plaisir"   ,
       ]
     end
 

@@ -1,11 +1,9 @@
 class GiftsController < ApplicationController
 
   respond_to :html
+  before_action :count_gifts, :get_name
 
-  def index
-    @gifts_count = Gift.where(author: current_user).count
-    @gift = Gift.new(author: current_user)
-
+  def get_name
     @name = if user_signed_in?
               current_user.name
             else
@@ -13,7 +11,17 @@ class GiftsController < ApplicationController
             end
   end
 
+  def count_gifts
+    @gifts_count = Gift.where(author: current_user).count
+  end
+
+  def index
+    @gift = Gift.new(author: current_user)
+
+  end
+
   def new
+    render template: :index
   end
 
   def create
@@ -22,7 +30,7 @@ class GiftsController < ApplicationController
     if @gift.save
       redirect_to root_path
     else
-      respond_with(@gift)
+      render template: 'gifts/index'
     end
   end
 
