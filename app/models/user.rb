@@ -43,4 +43,15 @@ class User
   # field :locked_at,       type: Time
   #}}}
 
+  def name
+    [first_name, last_name].map(&:capitalize).join(" ")
+  end
+
+  class << self
+    def serialize_from_session(key,salt)
+      record = (to_adapter.get(key[0]["$oid"]) rescue nil) || to_adapter.get(key)
+      record if record && record.authenticatable_salt == salt
+    end
+  end
+
 end

@@ -1,6 +1,9 @@
 class HomeController < ApplicationController
   def index
-
-    @tagada = 'trololo'
+    @name = if user_signed_in?
+              current_user.name
+            else
+              'Vaillant(e) inconnu(e)'
+            end
   end
 end
