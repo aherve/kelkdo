@@ -8,7 +8,6 @@ module Facebookable
     field :gender, type: String
     field :provider, type: String
     field :uid, type: String
-    field :image_url, type: String
     index({uid: 1},{unique: true, name: 'UsrfacebookUid'} )
   end
 
@@ -42,11 +41,7 @@ module Facebookable
   end
 
   def image
-    if self.image_url.blank? and provider.to_s == "facebook"
-      self.image_url = "http://graph.facebook.com/#{uid}/picture"
-    else
-      self.image_url
-    end
+    "http://graph.facebook.com/#{uid}/picture"
   end
 
   module ClassMethods
@@ -56,7 +51,6 @@ module Facebookable
           user.provider = auth.provider
           user.uid = auth.uid
           user.email = auth.info.email
-          user.password = Devise.friendly_token[0,20]
           user.first_name = auth.info.first_name   # assuming the user model has a name
           user.last_name  = auth.info.last_name   # assuming the user model has a name
           user.gender = auth.info.gender
