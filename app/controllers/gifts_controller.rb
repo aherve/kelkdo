@@ -12,16 +12,12 @@ class GiftsController < ApplicationController
   end
 
   def count_gifts
-    @gifts_count = Gift.where(author: current_user).count
+    #@gifts_count = Gift.where(author: current_user).count
+    @gifts_count = Gift.count
   end
 
   def index
     @gift = Gift.new(author: current_user)
-
-  end
-
-  def new
-    render template: :index
   end
 
   def create
