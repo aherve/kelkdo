@@ -2,6 +2,7 @@ class GiftsController < ApplicationController
 
   respond_to :html
   before_action :count_gifts, :get_name
+  before_action :authenticate_user!
 
   def get_name
     @name = if user_signed_in?
