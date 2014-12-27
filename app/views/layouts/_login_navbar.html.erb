@@ -1,0 +1,6 @@
+<% if user_signed_in? %>
+  <ul class='nav navbar-nav pull-right'>
+  <li><%= link_to current_user.name, '#'  %></li>
+  <li><%= link_to "déconnexion", destroy_user_session_path  %></li>
+</ul>
+<% end %>
