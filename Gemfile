@@ -34,3 +34,5 @@ gem 'mongo_session_store-rails4'
 
 gem 'figaro'
 gem 'faraday'
+
+gem 'twitter-bootstrap-rails'
