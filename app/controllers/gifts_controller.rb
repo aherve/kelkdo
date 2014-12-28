@@ -30,7 +30,7 @@ class GiftsController < ApplicationController
     @recipient = params[:search][:recipient] rescue nil
 
     @gifts = Gift.any_in(author: current_user.friend_ids)
-    if @gifts.empty? or 1 == 1
+    if @gifts.empty? 
       flash[:info] = 'Raconte au moins un cadeau pour pouvoir voir ceux des autres !'
       redirect_to root_path
     end
