@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'i18n'
+gem 'devise-i18n'
+gem 'globalize'
 
 gem 'rails', '4.1.8'
 gem 'sass-rails', '~> 4.0.3'
