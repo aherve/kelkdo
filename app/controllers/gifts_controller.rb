@@ -21,7 +21,8 @@ class GiftsController < ApplicationController
   end
 
   def my_gifts
-    @gift = Gift.new(author: current_user)
+    @gift = Gift.new
+
     flash[:info] = "T'as encore rien mis, patate !" if @my_gifts_count == 0
     @context = params[:search][:context] rescue nil
     @recipient = params[:search][:recipient] rescue nil
