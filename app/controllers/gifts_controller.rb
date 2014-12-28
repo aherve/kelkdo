@@ -72,7 +72,7 @@ class GiftsController < ApplicationController
   end
 
   def count_gifts
-    @my_gifts_count = 0#current_user.gifts.count rescue 0
+    @my_gifts_count = current_user.gifts.count rescue 0
     @gifts_count = Gift.count
   end
 
