@@ -9,7 +9,7 @@
       <h3><%= @gifts.size %> suggestions de cadeaux: </h3>
     <ul class='list-group'>
       <% @gifts.each do |gift, authors| %>
-        <li class='list-group-item'><%= gift %> (offert(e) par <%= authors.join(", ") %> )</li>
+        <li class='list-group-item'><%= gift %><span class='badge'><%= authors.size %> de tes amis <%= authors.size > 1 ? 'ont' : 'a' %> déja offert ça</span></li>
     <% end %>
     </ul>
   <% end %>
