@@ -1,4 +1,11 @@
 <h2>Déja <%= @gifts_count %> cadeaux renseignés à travers le monde !</h2>
+<p>
+  <% if @my_gifts_count > 0 %>
+    Dont seulement <%= @my_gifts_count %> par toi (pour l'instant).
+  <% else %>
+    Mais aucun par toi. T'as bien offert quelque chose un jour ? 
+  <% end %>
+</p>
 
 <%= render 'gifts/form' %>
 

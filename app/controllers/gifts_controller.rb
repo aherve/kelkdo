@@ -13,6 +13,7 @@ class GiftsController < ApplicationController
     @gift = Gift.new(gift_params)
     @gift.author = current_user
     if @gift.save
+      flash[:success] = "Génial !"
       redirect_to root_path
     else
       render template: 'gifts/index'
@@ -63,6 +64,7 @@ class GiftsController < ApplicationController
   end
 
   def count_gifts
+    @my_gifts_count = current_user.gifts.count
     @gifts_count = Gift.count
   end
 
