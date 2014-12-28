@@ -1,0 +1,9 @@
+<%= form_for :search, method: :get do |f|%> 
+  <%= f.label :'filtrer par occasion' %>
+<%= f.select :context, ([nil] + Gift.acceptable_contextes), {selected: @context}, {class: 'form-control'} %>
+
+<%= f.label :'filtrer par destinataire' %>
+<%= f.select :recipient, ([nil] + Gift.acceptable_recipients), {selected: @recipient}, {class: 'form-control'} %>
+
+<%= f.submit :filtrer%>
+  <% end %>

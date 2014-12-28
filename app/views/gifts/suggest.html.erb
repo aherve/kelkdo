@@ -7,23 +7,15 @@
       <div class="fb-like row" data-share="true" data-width="450" data-show-faces="true"> </div>
   <% else %>
       <h3><%= @gifts.size %> suggestions de cadeaux: </h3>
-    <ul>
+    <ul class='list-group'>
       <% @gifts.each do |gift, authors| %>
-        <li><%= gift %> (offert(e) par <%= authors.join(", ") %> )</li>
+        <li class='list-group-item'><%= gift %> (offert(e) par <%= authors.join(", ") %> )</li>
     <% end %>
     </ul>
   <% end %>
   </div>
 
   <div class='search col-lg-3 pull-right'>
-    <%= form_for :search, method: :get do |f|%> 
-      <%= f.label :'filtrer par occasion' %>
-    <%= f.select :context, ([nil] + Gift.acceptable_contextes), selected: @context %>
-
-    <%= f.label :'filtrer par destinataire' %>
-    <%= f.select :recipient, ([nil] + Gift.acceptable_recipients), selected: @recipient %>
-
-    <%= f.submit :filtrer%>
-  <% end %>
+    <%= render 'filter_form' %>
   </div>
 </div>

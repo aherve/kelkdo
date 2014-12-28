@@ -1,12 +1,29 @@
-<h2> Mes cadeaux déjà offerts: </h2>
-<div class='well'>
-<ul>
-  <% if @gifts.empty? %>
+<div class='well col-lg-12'>
+  <h2> Mes cadeaux déjà offerts: </h2>
+  <div class='results col-lg-9'>
+
+    <% if @my_gifts_count > 0 %>
+      <% if @gifts.empty? %>
+        Woops, rien trouvé. Change de filtre peut être ?
+      <% else %>
+        <ul class='list-group'>
+        <% @gifts.each do |gift| %>
+          <li class='list-group-item'><%= gift.name %> à <%= gift.recipient %> pour <%= gift.context %></li>
+        </ul>
+      <% end %>
+    <% end %>
+
   <% else %>
-    <ul>
-    <% @gifts.each do |gift| %>
-      <li><%= gift.name %> à <%= gift.recipient %> pour <%= gift.context %></li>
+    <p>
+    Rien pour l'instant.<%= link_to "Parle nous donc de tes cadeaux pour remplir ta liste !", root_path, class: 'btn btn-primary' %>
+</p>
   <% end %>
-  </ul>
-<% end %>
+
+
+
+  </div>
+
+  <div class = 'search col-lg-3 pull-right'>
+    <%= render 'filter_form' %>
+  </div>
 </div>

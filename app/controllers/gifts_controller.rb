@@ -21,20 +21,28 @@ class GiftsController < ApplicationController
   end
 
   def my_gifts
+    flash[:info] = "T'as encore rien mis, patate !" if @my_gifts_count == 0
+    @context = params[:search][:context] rescue nil
+    @recipient = params[:search][:recipient] rescue nil
+
     @gifts = current_user.gifts
+
+    @gifts = @gifts.where(context: @context) unless @context.blank?
+    @gifts = @gifts.where(recipient: @recipient) unless @recipient.blank?
   end
 
   # suggest a gift
   def suggest
 
-    @context = params[:search][:context] rescue nil
-    @recipient = params[:search][:recipient] rescue nil
-
-    @gifts = Gift.any_in(author: current_user.friend_ids)
     unless current_user.gifts.any?
       flash[:info] = 'Raconte au moins un cadeau pour pouvoir voir ceux des autres !'
       redirect_to root_path
     end
+
+    @context = params[:search][:context] rescue nil
+    @recipient = params[:search][:recipient] rescue nil
+
+    @gifts = Gift.any_in(author: current_user.friend_ids)
     @gifts = @gifts.where(context: @context) unless @context.blank?
     @gifts = @gifts.where(recipient: @recipient) unless @recipient.blank?
 
@@ -64,7 +72,7 @@ class GiftsController < ApplicationController
   end
 
   def count_gifts
-    @my_gifts_count = current_user.gifts.count
+    @my_gifts_count =0 # current_user.gifts.count
     @gifts_count = Gift.count
   end
 
