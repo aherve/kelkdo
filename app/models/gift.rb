@@ -24,6 +24,10 @@ class Gift
         "mon copain",
         "ma femme",
         "mon mari",
+        "mamie Huguette",
+        "papi René",
+        "cousin Hub",
+        "mon boss",
       ]
     end
 
@@ -36,6 +40,7 @@ class Gift
         "m'excuser"       ,
         "pécho"           ,
         "lui faire plaisir"   ,
+        "son pot de départ",
       ]
     end
 
