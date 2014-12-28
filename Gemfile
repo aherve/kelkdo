@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.1.4'
+
 gem 'i18n'
 gem 'devise-i18n'
 gem 'globalize'
