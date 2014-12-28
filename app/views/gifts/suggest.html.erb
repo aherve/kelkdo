@@ -1,13 +1,15 @@
 <div class='well col-lg-12 row'>
+  <h3><%= @gifts.size %> suggestions de cadeaux </h3>
   <div class='results col-lg-9'>
     <% if @gifts.empty? %>
-      <div class='row'>0 suggestion ? <strong>NOOOoooooooo!!!!</strong></div>
-      <div class='row'>Bon après avec seulement <%= current_user.friends_count %> amis inscrits ici forcément...</div>
-      <div class='row'> Invite-en d'autres pour avoir plus d'idées !</div>
-      <div class="fb-like row" data-share="true" data-width="450" data-show-faces="true"> </div>
+      <div class='row'><strong>NOOOoooooooo!!!!</strong></div>
+    <div class='row'>Bon après avec seulement <%= current_user.friends_count %> amis inscrits ici forcément...</div>
+    <div class='row'> 
+      Invite-en d'autres pour avoir plus d'idées !
+      <div class="fb-share-button pager" data-share="true" data-width="450" data-show-faces="true" data-layout='button'></div> 
+    </div>
   <% else %>
-      <h3><%= @gifts.size %> suggestions de cadeaux: </h3>
-    <ul class='list-group'>
+      <ul class='list-group'>
       <% @gifts.each do |gift, authors| %>
         <li class='list-group-item'><%= gift %><span class='badge'><%= authors.size %> de tes amis <%= authors.size > 1 ? 'ont' : 'a' %> déja offert ça</span></li>
     <% end %>

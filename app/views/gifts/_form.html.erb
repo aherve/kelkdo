@@ -20,6 +20,6 @@
   <label>j'ai offert <%= f.text_field :name, :class => 'form-control input-small', placeholder: 'une tronçonneuse' %></label>
   <label>à <%= f.select :recipient, Gift.acceptable_recipients, {},{ :class => 'form-control input-small'} %></label>
 
-  <%= f.submit "Et ça lui a plu", :class => 'btn btn-primary' %>
+  <%= f.submit "Et ça lui a plu !", :class => 'btn btn-primary' %>
 <% end %>
 </div>

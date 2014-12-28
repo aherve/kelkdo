@@ -4,19 +4,22 @@
 
     <% if @my_gifts_count > 0 %>
       <% if @gifts.empty? %>
-        Woops, rien trouvé. Change de filtre peut être ?
-      <% else %>
-        <ul class='list-group'>
-        <% @gifts.each do |gift| %>
-          <li class='list-group-item'><%= gift.name %> à <%= gift.recipient %> pour <%= gift.context %></li>
-        </ul>
-      <% end %>
+      Woops, rien trouvé. Change de filtre peut être ?
+  <% else %>
+      <ul class='list-group'>
+      <% @gifts.each do |gift| %>
+        <li class='list-group-item'><%= gift.name %> à <%= gift.recipient %> pour <%= gift.context %></li>
     <% end %>
+    </ul>
+  <% end %>
 
   <% else %>
-    <p>
-    Rien pour l'instant.<%= link_to "Parle nous donc de tes cadeaux pour remplir ta liste !", root_path, class: 'btn btn-primary' %>
-</p>
+      <p>
+        Rien pour l'instant.
+  </p>
+  <div class='row'>
+        <%= link_to "Parle nous donc de tes cadeaux pour remplir ta liste !", root_path, class: 'btn btn-primary' %>
+      </div>
   <% end %>
 
 
