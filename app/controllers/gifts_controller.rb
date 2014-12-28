@@ -6,6 +6,7 @@ class GiftsController < ApplicationController
 
   def index
     @gift = Gift.new(author: current_user)
+
   end
 
   def create
@@ -29,6 +30,10 @@ class GiftsController < ApplicationController
     @recipient = params[:search][:recipient] rescue nil
 
     @gifts = Gift.any_in(author: current_user.friend_ids)
+    if @gifts.empty? or 1 == 1
+      flash[:info] = 'Raconte au moins un cadeau pour pouvoir voir ceux des autres !'
+      redirect_to root_path
+    end
     @gifts = @gifts.where(context: @context) unless @context.blank?
     @gifts = @gifts.where(recipient: @recipient) unless @recipient.blank?
 
