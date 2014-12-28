@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'home/index'
+
   get 'gifts', to: 'gifts#index', as: :gifts
   get 'gifts/suggest', to: 'gifts#suggest', as: :suggest_gifts
   get 'my-gifts', to: 'gifts#my_gifts', as: :my_gifts
@@ -7,5 +9,5 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks"}
 
-  root :to => "gifts#index"
+  root :to => "home#index"
 end
