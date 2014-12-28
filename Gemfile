@@ -39,5 +39,3 @@ gem 'faraday'
 gem 'twitter-bootstrap-rails'
 gem "therubyracer"
 gem "less-rails"
-
-gem 'shareable'
