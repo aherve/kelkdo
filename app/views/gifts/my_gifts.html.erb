@@ -1,5 +1,12 @@
+<% content_for :title do %>
+  <%= title('mes cadeaux') %>
+<% end %>
+
+<h2>Mes cadeaux</h2>
+<%= render 'gifts/form' %>
+
 <div class='well col-lg-12'>
-  <h2> Mes cadeaux déjà offerts: </h2>
+  <h3> J'ai déjà offert : </h3>
   <div class='results col-lg-9'>
 
     <% if @my_gifts_count > 0 %>
@@ -15,11 +22,11 @@
 
   <% else %>
       <p>
-        Rien pour l'instant.
-  </p>
-  <div class='row'>
-        <%= link_to "Parle nous donc de tes cadeaux pour remplir ta liste !", root_path, class: 'btn btn-primary' %>
-      </div>
+      Rien pour l'instant.
+    </p>
+    <div class='row'>
+      <%= link_to "Parle nous donc de tes cadeaux pour remplir ta liste !", root_path, class: 'btn btn-primary' %>
+    </div>
   <% end %>
 
 
