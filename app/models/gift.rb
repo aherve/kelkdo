@@ -28,6 +28,8 @@ class Gift
         "papi René",
         "cousin Hub",
         "mon boss",
+        "mon beauf",
+        "ma belle soeur",
       ]
     end
 
